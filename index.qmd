@@ -6,4 +6,4 @@ This is a Quarto website.
 
 To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
 
-
+[Homework 1](http://localhost:7970/Homework_02.html)
