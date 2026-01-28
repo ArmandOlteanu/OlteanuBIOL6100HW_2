@@ -84,8 +84,21 @@ r <- sqrt(x^2+y^2)
 
 theta <- atan(y/x)
 
-polar coordinates <- c(r = r, theta = theta)
-print(polar coordinates)
+polarcoordinates <- c(r = r, theta = theta)
+print(polarcoordinates)
+
+```
+
+Question 4: 
+
+```{r}
+
+queue <- c("sheep", "fox", "owl", "ant")
+queue <- c(queue, "serpent")
+queue <- queue[-1]
+queue <- c("donkey", queue)
+queue <- c(queue != "serpent")
+queue <- c(queue != "owl")
 
 
 ```

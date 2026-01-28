@@ -1,30 +1,16 @@
 [
   {
+    "objectID": "Homework_4.html",
+    "href": "Homework_4.html",
+    "title": "Homework_4",
+    "section": "",
+    "text": "Question 1a:\n\nx &lt;- 1.1\na &lt;- 2.2\nb &lt;- 3.3\n\nz &lt;-x^(a^b)\nprint(z)\n\n[1] 3.61714\n\n\nQuestion 1b:\n\nz &lt;- (x^a)^b\nprint(z)\n\n[1] 1.997611\n\n\nQuestion 1c:\n\nz &lt;- (3*x^3)+(2*x^2)+1\nprint(z)\n\n[1] 7.413\n\n\nQuestion 2a:\n\nz &lt;- c(seq(1,8) , seq(8,1)) \nprint(z)\n\n [1] 1 2 3 4 5 6 7 8 8 7 6 5 4 3 2 1\n\n\nQuestion 2b:\n\nz &lt;- c(rep(1:5, times = 1:5))\nprint(z)\n\n [1] 1 2 2 3 3 3 4 4 4 4 5 5 5 5 5\n\n\nQuestion 2c:\n\nz &lt;- c(rep(5:1, times = 1:5))\nprint(z)\n\n [1] 5 4 4 3 3 3 2 2 2 2 1 1 1 1 1\n\n\nQuestion 3:\n\n# Cartesian coordinates \nset.seed(42)\ncoordinates &lt;- runif(2)\n\nx &lt;- coordinates[1]\ny &lt;- coordinates[2]\n\n# convert to polar coordinates\n\nr &lt;- sqrt(x^2+y^2)\n\ntheta &lt;- atan(y/x)\n\npolarcoordinates &lt;- c(r = r, theta = theta)\nprint(polarcoordinates)\n\n        r     theta \n1.3095726 0.7974229 \n\n\nQuestion 4:\n\nqueue &lt;- c(\"sheep\", \"fox\", \"owl\", \"ant\")\nqueue &lt;- c(queue, \"serpent\")\nqueue &lt;- queue[-1]\nqueue &lt;- c(\"donkey\", queue)\nqueue &lt;- c(queue != \"serpent\")\nqueue &lt;- c(queue != \"owl\")"
+  },
+  {
     "objectID": "Homework_02.html",
     "href": "Homework_02.html",
     "title": "Homework_02.qmd",
     "section": "",
     "text": "This page will be used to post my homeworks for comp bio"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "OlteanuBIOL6100HW",
-    "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\nHomework 1\nHomework 4"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site"
-  },
-  {
-    "objectID": "Homework_4.html",
-    "href": "Homework_4.html",
-    "title": "Homework_4",
-    "section": "",
-    "text": "Question 1a:\n\nx &lt;- 1.1\na &lt;- 2.2\nb &lt;- 3.3\n\nz &lt;-x^(a^b)\nprint(z)\n\n[1] 3.61714\n\n\nQuestion 1b:\n\nz &lt;- (x^a)^b\nprint(z)\n\n[1] 1.997611\n\n\nQuestion 1c:\n\nz &lt;- (3*x^3)+(2*x^2)+1\nprint(z)\n\n[1] 7.413\n\n\nQuestion 2a:\n\nz &lt;- c(seq(1,8) , seq(8,1)) \nprint(z)\n\n [1] 1 2 3 4 5 6 7 8 8 7 6 5 4 3 2 1\n\n\nQuestion 2b:\n\nz &lt;- c(rep(1:5, times = 1:5))\nprint(z)\n\n [1] 1 2 2 3 3 3 4 4 4 4 5 5 5 5 5\n\n\nQuestion 2c:\n\nz &lt;- c(rep(5:1, times = 1:5))\nprint(z)\n\n [1] 5 4 4 3 3 3 2 2 2 2 1 1 1 1 1\n\n\nQuestion 3:"
   }
 ]
