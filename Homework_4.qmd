@@ -66,6 +66,26 @@ Question 2c:
 z <- c(rep(5:1, times = 1:5))
 print(z)
 
+```
+
+Question 3:
+
+```{r}
+# Cartesian coordinates 
+set.seed(42)
+coordinates <- runif(2)
+
+x <- coordinates[1]
+y <- coordinates[2]
+
+# convert to polar coordinates
+
+r <- sqrt(x^2+y^2)
+
+theta <- atan(y/x)
+
+polar coordinates <- c(r = r, theta = theta)
+print(polar coordinates)
 
 
 ```
