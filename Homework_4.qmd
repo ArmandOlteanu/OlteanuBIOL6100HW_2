@@ -53,14 +53,18 @@ Question 2b:
 
 ```{r}
 
-z <- c(rep())
-
+z <- c(rep(1:5, times = 1:5))
+print(z)
 
 ```
 
 Question 2c:
 
 ```{r}
+
+
+z <- c(rep(5:1, times = 1:5))
+print(z)
 
 
 
