@@ -97,8 +97,21 @@ queue <- c("sheep", "fox", "owl", "ant")
 queue <- c(queue, "serpent")
 queue <- queue[-1]
 queue <- c("donkey", queue)
-queue <- c(queue != "serpent")
-queue <- c(queue != "owl")
+queue <- queue[-3] 
+queue <- queue[-4] 
+queue <- c(queue, "amphid")
+queue <- queue[-3] 
+queue <- c(queue, "ant")
+print(queue)
+which (queue =="amphid")
+```
 
+Question 5: 
+
+```{r}
+x <- 1:100
+
+q <- x[x %% 2 != 0 & x %% 3 != 0 & x %% 7 != 0]
+print(q) 
 
 ```
