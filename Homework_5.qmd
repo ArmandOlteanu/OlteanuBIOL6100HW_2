@@ -1,0 +1,112 @@
+---
+title: "Homework 5"
+format: html
+---
+
+
+Question 1:
+```{r}
+# set seed for reproducibility 
+set.seed(32)
+
+# picked a single interger between 3-10
+
+n_dims <- sample(3:10, 1)
+
+# created a vector of consecutive integers from 1-n_dims^2
+
+vector <- 1:(n_dims^2)
+
+
+#shuffled the values
+
+random_shuffle <- sample(vector)
+
+# created a square matrix with the created elements
+
+matrix <- matrix(random_shuffle, nrow = n_dims, ncol = n_dims)
+
+# printed maxtrix
+
+print(matrix)
+
+#used t fucntion to transpose the matrix
+matrix_t <- t(matrix)
+
+# printed new matrix which showed t function working to change columns into rows and rows into columns
+
+print(matrix_t)
+
+# Sum and mean of the first row
+
+first_row_sum <- sum(matrix[1, ])
+first_row_mean <- mean(matrix[1, ])
+
+# Sum and mean of the last row
+
+last_row_sum  <- sum(matrix[n_dims, ])
+last_row_mean <- mean(matrix[n_dims, ])
+
+# Compute eigen$values and eigen$vectors
+eigen <- eigen(matrix)
+eigen
+
+
+# Check the type of objects, both doubles
+typeof(eigen$values)
+typeof(eigen$vectors)
+
+```
+
+Question 2:
+
+```{r}
+
+
+# 4 x 4 matrix filled with random uniform values
+my_matrix <- matrix(runif(16), nrow = 4)
+
+# 100-element vector of TRUE or FALSE values with an inequality of 0.2 added to it
+
+my_logical <- runif(100) > 0.2
+
+my_letters <- sample(letters)
+
+my_list <- list(my_matrix = my_matrix, my_logical = my_logical, my_letters = my_letters)
+
+new_list <- list(my_list$my_matrix[2, 2], my_list$my_logical[2], my_list$my_letters[2])
+
+typeof(new_list[[1]])  
+typeof(new_list[[2]]) 
+typeof(new_list[[3]])
+
+combined_vector <- c(new_list[[1]], new_list[[2]], new_list[[3]])
+typeof(combined_vector)
+
+# it is a character data type
+
+
+```
+
+Question 3:
+
+```{r}
+# Create a data frame with two variables and 26 rows
+df <- data.frame(my_unis = runif(26, min = 0, max = 10),my_letters = sample(LETTERS))
+df
+
+# replaced 4 random values with NA
+df$my_unis[sample(1:26, 4)] <- NA
+
+# idenified which rows had the NA values
+which(is.na(df$my_unis))
+
+# ordered in alphabetical order
+df <- df[order(df$my_letters), ]
+df
+
+# found the mean of numbers column ignoring the NA's
+mean(df$my_unis, na.rm = TRUE)
+
+```
+
