@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -134,6 +169,237 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Question 1:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set seed for reproducibility </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">32</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># picked a single interger between 3-10</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>n_dims <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">1</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># created a vector of consecutive integers from 1-n_dims^2</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>vector <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span>(n_dims<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#shuffled the values</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>random_shuffle <span class="ot">&lt;-</span> <span class="fu">sample</span>(vector)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># created a square matrix with the created elements</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(random_shuffle, <span class="at">nrow =</span> n_dims, <span class="at">ncol =</span> n_dims)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># printed maxtrix</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(matrix)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9]
+ [1,]   70   50   65   68   42   31   10   76   40
+ [2,]   11   41   64    4   43   34   77    1   67
+ [3,]   20   75   63   29   54   18   55   52   46
+ [4,]   73   15   61   17   71   78    8   51   72
+ [5,]   33    6   45   32   28   66   48   80   59
+ [6,]   27   37   21   79    5   14   12   35   62
+ [7,]   81   57   53   56    9   13   25   38    3
+ [8,]   49   26   36   58   60   19   69   74    2
+ [9,]   39   47   23   24   16   22    7   30   44</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#used t fucntion to transpose the matrix</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>matrix_t <span class="ot">&lt;-</span> <span class="fu">t</span>(matrix)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># printed new matrix which showed t function working to change columns into rows and rows into columns</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(matrix_t)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9]
+ [1,]   70   11   20   73   33   27   81   49   39
+ [2,]   50   41   75   15    6   37   57   26   47
+ [3,]   65   64   63   61   45   21   53   36   23
+ [4,]   68    4   29   17   32   79   56   58   24
+ [5,]   42   43   54   71   28    5    9   60   16
+ [6,]   31   34   18   78   66   14   13   19   22
+ [7,]   10   77   55    8   48   12   25   69    7
+ [8,]   76    1   52   51   80   35   38   74   30
+ [9,]   40   67   46   72   59   62    3    2   44</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sum and mean of the first row</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>first_row_sum <span class="ot">&lt;-</span> <span class="fu">sum</span>(matrix[<span class="dv">1</span>, ])</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>first_row_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(matrix[<span class="dv">1</span>, ])</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Sum and mean of the last row</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>last_row_sum  <span class="ot">&lt;-</span> <span class="fu">sum</span>(matrix[n_dims, ])</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>last_row_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(matrix[n_dims, ])</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute eigen$values and eigen$vectors</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>eigen <span class="ot">&lt;-</span> <span class="fu">eigen</span>(matrix)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>eigen</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>eigen() decomposition
+$values
+[1] 372.6135401+ 0.00000i  83.0170817+ 0.00000i -53.3661983+26.25408i
+[4] -53.3661983-26.25408i  50.5034779+ 0.00000i  -0.1081429+48.65274i
+[7]  -0.1081429-48.65274i -29.3513378+ 0.00000i   6.1659206+ 0.00000i
+
+$vectors
+              [,1]           [,2]                     [,3]
+ [1,] 0.4162881+0i -0.19222620+0i  0.096227454-0.17162801i
+ [2,] 0.2776122+0i  0.62747529+0i -0.111169711+0.27554666i
+ [3,] 0.3569748+0i  0.38080632+0i  0.242429586-0.05349676i
+ [4,] 0.3876904+0i -0.24046337+0i -0.376317700+0.24767161i
+ [5,] 0.3443586+0i -0.31204031+0i -0.585082206+0.00000000i
+ [6,] 0.2556263+0i -0.00224143+0i  0.335959274-0.15775791i
+ [7,] 0.3203961+0i  0.10791072+0i  0.016227385-0.17210662i
+ [8,] 0.3717616+0i -0.48144978+0i  0.286711002+0.08941050i
+ [9,] 0.2170548+0i  0.16023409+0i  0.005782296-0.09064726i
+                          [,4]           [,5]                     [,6]
+ [1,]  0.096227454+0.17162801i -0.08043028+0i -0.148635788-0.38448410i
+ [2,] -0.111169711-0.27554666i  0.09143040+0i  0.055803568+0.24905381i
+ [3,]  0.242429586+0.05349676i -0.33186144+0i  0.426133594-0.19383123i
+ [4,] -0.376317700-0.24767161i  0.42366994+0i -0.094056824-0.20141852i
+ [5,] -0.585082206+0.00000000i  0.03459317+0i  0.142242659+0.23896785i
+ [6,]  0.335959274+0.15775791i  0.60459636+0i -0.232521842+0.07918895i
+ [7,]  0.016227385+0.17210662i -0.19601189+0i -0.491867060+0.00000000i
+ [8,]  0.286711002-0.08941050i -0.49126384+0i  0.148429792+0.30365779i
+ [9,]  0.005782296+0.09064726i  0.22146999+0i -0.002355514-0.05006932i
+                          [,7]            [,8]           [,9]
+ [1,] -0.148635788+0.38448410i -0.088008295+0i  0.33621741+0i
+ [2,]  0.055803568-0.24905381i  0.568500942+0i -0.24151853+0i
+ [3,]  0.426133594+0.19383123i -0.258417181+0i  0.04397253+0i
+ [4,] -0.094056824+0.20141852i -0.225810372+0i -0.34953650+0i
+ [5,]  0.142242659-0.23896785i -0.002688286+0i -0.07313144+0i
+ [6,] -0.232521842-0.07918895i  0.582635244+0i -0.70093282+0i
+ [7,] -0.491867060+0.00000000i -0.206981546+0i  0.08971573+0i
+ [8,]  0.148429792-0.30365779i  0.155445011+0i  0.28482945+0i
+ [9,] -0.002355514+0.05006932i -0.380546829+0i  0.34450769+0i</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the type of objects, both doubles</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(eigen<span class="sc">$</span>values)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "complex"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(eigen<span class="sc">$</span>vectors)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "complex"</code></pre>
+</div>
+</div>
+<p>Question 2:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4 x 4 matrix filled with random uniform values</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>my_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">runif</span>(<span class="dv">16</span>), <span class="at">nrow =</span> <span class="dv">4</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 100-element vector of TRUE or FALSE values with an inequality of 0.2 added to it</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>my_logical <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">100</span>) <span class="sc">&gt;</span> <span class="fl">0.2</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>my_letters <span class="ot">&lt;-</span> <span class="fu">sample</span>(letters)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">my_matrix =</span> my_matrix, <span class="at">my_logical =</span> my_logical, <span class="at">my_letters =</span> my_letters)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>new_list <span class="ot">&lt;-</span> <span class="fu">list</span>(my_list<span class="sc">$</span>my_matrix[<span class="dv">2</span>, <span class="dv">2</span>], my_list<span class="sc">$</span>my_logical[<span class="dv">2</span>], my_list<span class="sc">$</span>my_letters[<span class="dv">2</span>])</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(new_list[[<span class="dv">1</span>]])  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "double"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(new_list[[<span class="dv">2</span>]]) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "logical"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(new_list[[<span class="dv">3</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>combined_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(new_list[[<span class="dv">1</span>]], new_list[[<span class="dv">2</span>]], new_list[[<span class="dv">3</span>]])</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(combined_vector)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># it is a character data type</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Question 3:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame with two variables and 26 rows</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">my_unis =</span> <span class="fu">runif</span>(<span class="dv">26</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">10</span>),<span class="at">my_letters =</span> <span class="fu">sample</span>(LETTERS))</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    my_unis my_letters
+1  1.305134          J
+2  6.553704          F
+3  8.168187          V
+4  9.159123          K
+5  7.739356          W
+6  2.879297          I
+7  2.950799          X
+8  1.013974          P
+9  1.475270          E
+10 1.828656          R
+11 8.304749          S
+12 1.788953          U
+13 4.442344          Q
+14 5.511423          T
+15 8.170147          N
+16 4.324066          Y
+17 2.483281          A
+18 2.639666          Z
+19 7.647478          D
+20 1.422964          G
+21 7.247191          O
+22 6.630870          M
+23 4.058384          B
+24 5.476318          L
+25 1.286516          H
+26 7.526308          C</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># replaced 4 random values with NA</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>my_unis[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">26</span>, <span class="dv">4</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># idenified which rows had the NA values</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(<span class="fu">is.na</span>(df<span class="sc">$</span>my_unis))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  7 15 16 19</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ordered in alphabetical order</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df[<span class="fu">order</span>(df<span class="sc">$</span>my_letters), ]</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    my_unis my_letters
+17 2.483281          A
+23 4.058384          B
+26 7.526308          C
+19       NA          D
+9  1.475270          E
+2  6.553704          F
+20 1.422964          G
+25 1.286516          H
+6  2.879297          I
+1  1.305134          J
+4  9.159123          K
+24 5.476318          L
+22 6.630870          M
+15       NA          N
+21 7.247191          O
+8  1.013974          P
+13 4.442344          Q
+10 1.828656          R
+11 8.304749          S
+14 5.511423          T
+12 1.788953          U
+3  8.168187          V
+5  7.739356          W
+7        NA          X
+16       NA          Y
+18 2.639666          Z</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># found the mean of numbers column ignoring the NA's</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df<span class="sc">$</span>my_unis, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.497349</code></pre>
+</div>
+</div>
 
 
 
