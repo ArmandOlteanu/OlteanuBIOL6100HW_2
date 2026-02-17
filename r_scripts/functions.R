@@ -138,7 +138,7 @@ fit_linear <- function(x = runif(20), y = runif(20)){
 # OUT: slope and p value
 my_mod <- lm(y~x)
   my_out <- c(slope=summary(my_mod)$coefficients[2,1],
-  p_value = summary)my_mod)$coefficients[2,4])
+  p_value=summary(my_mod)$coefficients[2,4])
 
   #plot the output
   plot(x=x, y=y)

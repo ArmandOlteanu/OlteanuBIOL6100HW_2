@@ -1,0 +1,58 @@
+---
+title: "Homework_6"
+format: html
+---
+
+Question 1
+
+```{r} 
+##################################################
+# FUNCTION: log_growth 
+# Purpose: Creating a logistic growth model that returns a dataframe with columns for population size and time.
+# Inputs: N0 = initial population size
+# r = intrinsic growth rate 
+# K = carrying capacity
+# tfinal = ending time for simulation
+# tstep  = time step increment
+# Output: A dataframe with any time between 1:20 with intervals of 1
+# Nt = population size at each time
+
+##################################################
+
+log_growth <- function(N0=100, r=0.3, K=150, tfinal=20, tstep=1) {
+# time vector 
+time <- seq(from=0, to=tfinal, by=tstep)
+  
+# logistic growth equation
+Nt <- K / (1 + ((K - N0) / N0) * exp(-r * time))
+  
+# dataframe for plotting
+df_log_growth <- data.frame(time=time, Nt=Nt)
+  
+return(df_log_growth)
+
+}
+log_growth()
+
+# Question 2
+
+##################################################
+# Purpose: Take the data frame log_growth and create a plot of time as the x-axis and population as the y-axis
+# Input: data frame with two columns of time and population
+# Output: Plot
+
+plot_log_growth <- function(df_log_growth) {
+
+plot(x = df_log_growth$time, 
+y = df_log_growth$Nt,
+main = "Logistical Growth Model",
+xlab = "Time in Years",
+ylab = "Population Size",
+type = "l")
+}
+
+df <- log_growth()
+plot_log_growth(df)
+
+
+```
