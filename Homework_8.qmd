@@ -1,0 +1,61 @@
+---
+title: "Homework 8"
+format: html
+---
+
+
+```{r}
+
+library(tidyverse)
+
+#Observations on the data set variables 
+data(iris)
+class(iris)
+glimpse(iris)
+# there is 150 observations and 5 variables
+
+iris1 <- filter(iris, Species %in% c("virginica", "versicolor"), Sepal.Length > 6, Sepal.Width > 2.5)
+glimpse(iris)
+
+# 56 observations and 5 variable 
+
+
+iris2 <- select(iris1, Species, Sepal.Length, Sepal.Width)
+glimpse(iris2)
+
+# 56 observations and 3 variables 
+
+iris3 <- arrange(iris2, desc(Sepal.Length))
+head(iris3, 6)
+
+iris4 <- mutate(iris3, Sepal.Area = Sepal.Length * Sepal.Width)
+glimpse(iris4)
+
+# 56 observations and 4 variables 
+
+iris5 <- summarize(iris4, mean_length = mean(Sepal.Length), mean_width = mean(Sepal.Width), n = n ())
+print(iris5)
+
+iris6 <- group_by(iris4, Species) %>%
+    summarize(mean_length = mean(Sepal.Length),
+     mean_width = mean(Sepal.Width), n = n())
+
+print(iris6)
+
+irisFinal <- iris %>%
+    filter(Species %in% c("virginica", "versicolor"),
+    Sepal.Length > 6, 
+    Sepal.Width > 2.5) %>%
+        select(Species, Sepal.Length, Sepal.Width) %>%
+        arrange(desc(Sepal.Length)) %>%
+        mutate(Sepal.Area = Sepal.Length * Sepal.Width)
+
+glimpse(irisFinal)
+
+
+iris_longer <- iris %>%
+    pivot_longer(cols = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),
+    names_to = "Measure",
+    values_to = "Value")
+
+```
