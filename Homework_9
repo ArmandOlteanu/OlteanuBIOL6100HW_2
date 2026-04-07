@@ -1,0 +1,20 @@
+---
+title: "Homework_9"
+format: html
+---
+
+
+
+```{r}
+count_zeros_loop <- function(x) {
+  counter <- 0
+  for (val in x) {
+    if (val == 0) {
+      counter <- counter + 1
+    }
+  }
+  return(counter)
+}
+
+
+
