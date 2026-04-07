@@ -1,0 +1,26 @@
+---
+title: "Homework 8/9 idk, using iris dataset"
+format: html
+---
+
+```{r}
+
+library(ggplot2)
+head(iris)
+
+#x and y are continuous variables and Display the relationship between the variables, Include a fitted regression line
+
+ggplot(iris, aes(x = Sepal.Length, y = Petal.Length)) +
+  geom_point(size = 2, alpha = 0.7, color = "black") +
+  geom_smooth(method = "lm", se = TRUE, color = "green", fill = "blue") +
+  labs(
+    title = "Sepal Length vs Petal Length in Iris Flowers Dataset",
+    x = "Sepal Length (cm)",
+    y = "Petal Length (cm)",
+  )
+
+
+
+
+
+```

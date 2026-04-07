@@ -97,3 +97,4 @@ ggplot(group3_data, aes(x = Mean)) +
 # the distributions reshuffled shows what the means would look like if there was no difference between difference groups. Since there were original group means above and belowed the reshuffled means, it shows that the differences are not due to chance but moreso that there are true differences between means. 
 ```
 
+
