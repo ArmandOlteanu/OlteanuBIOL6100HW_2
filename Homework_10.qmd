@@ -11,16 +11,41 @@ head(iris)
 #x and y are continuous variables and Display the relationship between the variables, Include a fitted regression line
 
 ggplot(iris, aes(x = Sepal.Length, y = Petal.Length)) +
-  geom_point(size = 2, alpha = 0.7, color = "black") +
-  geom_smooth(method = "lm", se = TRUE, color = "green", fill = "blue") +
-  labs(
-    title = "Sepal Length vs Petal Length in Iris Flowers Dataset",
-    x = "Sepal Length (cm)",
-    y = "Petal Length (cm)",
-  )
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(title = "Sepal Length vs Petal Length in Iris Flowers Dataset",
+    x = "Sepal Length",
+    y = "Petal Length",)
 
+#(x) is a categorical variable representing groups (e.g., treatment A/B/C), (y) is continuous
 
+ggplot(iris, aes(x = Species, y = Sepal.Width)) +
+  geom_boxplot() +
+  geom_jitter() +
+  labs(title = "Boxplot: Sepal Width by Species",
+  x = "Species",
+  y = "Sepal Width (cm)")
 
+#Use a dataset where (x) is continuous (y) is binary (0/1)
+#First i need to create a binary variable where 1 if setosa or 0 if not
 
+iris$is_setosa <- ifelse(iris$Species == "setosa", 1, 0)
+ggplot(iris, aes(x = Petal.Length, y = is_setosa)) +
+  geom_jitter() +
+  geom_smooth(method = "glm", method.args = list(family = "binomial"))
 
+# Q4 using Hogan_Plecopetra_dataset bc it has a bunch of discrete x and y, Use a dataset where both variables are categorical. 
+# had to clear off top part of the file because when converting to csv positron wasn't reading it right. 
+# notes- not sure why there is a red bar on the left of the figure, I think its another county that wasn't coverted properly or a record type that was wrong or something but I gave up
+
+Plecopetera_data <- read.csv("Hogan_Plecoptera_Dataset_copy_csv.csv")
+head(Plecopetera_data)
+str(Plecopetera_data)
+
+ggplot(Plecopetera_data, aes(x = Type, fill = county)) +
+  geom_bar() +
+  labs(title = "Proportion of Record Types by County",
+       x = "Record Type",
+       y = "Proportion",
+       fill = "County")
 ```

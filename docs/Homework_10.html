@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Untitled – OlteanuBIOL6100HW</title>
+<title>Homework 8/9 idk, using iris dataset – OlteanuBIOL6100HW</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -152,7 +152,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Untitled</h1>
+<h1 class="title">Homework 8/9 idk, using iris dataset</h1>
 </div>
 
 
@@ -170,123 +170,232 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Created for loop to count zeros  </span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>count_zero_loop <span class="ot">&lt;-</span> <span class="cf">function</span>(vector) {</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    counter <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (z <span class="cf">in</span> <span class="fu">seq_along</span>(vector)) {</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (vec[z] <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>            counter <span class="ot">&lt;-</span> counter <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(counter)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Using subsetting instead of a loop</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>count_zero_subset <span class="ot">&lt;-</span> <span class="cf">function</span>(vector) {</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">sum</span>(vector <span class="sc">==</span> <span class="dv">0</span>))</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to create matrix in which each element is the product of the row number * the column number.</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>product_matrix <span class="ot">&lt;-</span> <span class="cf">function</span>(rows, cols) {</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">matrix</span>(<span class="fu">outer</span>(<span class="dv">1</span><span class="sc">:</span>rows, <span class="dv">1</span><span class="sc">:</span>cols, <span class="at">FUN =</span> <span class="st">"*"</span>), <span class="at">nrow =</span> rows, <span class="at">ncol =</span> cols)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate a dataset with 3 groups of data, each group drawn from a distribution with a different mean. The final data frame should have 1 column for group and 1 column for the response variable.</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1000</span>)</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>three_group_dataset <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"Group_1"</span>, <span class="dv">10</span>), <span class="fu">rep</span>(<span class="st">"Group_2"</span>, <span class="dv">10</span>), <span class="fu">rep</span>(<span class="st">"Group_3"</span>, <span class="dv">10</span>))</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>response <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">2</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">7</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">14</span>, <span class="at">sd =</span> <span class="dv">1</span>))</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>df_three_group_dataset <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">group =</span> three_group_dataset, <span class="at">res =</span> response)</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>group_means <span class="ot">&lt;-</span> <span class="fu">tapply</span>(df_three_group_dataset<span class="sc">$</span>res, df_three_group_dataset<span class="sc">$</span>group, mean) </span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(group_means)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  Group_1   Group_2   Group_3 
- 1.670910  6.564419 14.309922 </code></pre>
+<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa
+6          5.4         3.9          1.7         0.4  setosa</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write a custom function that 1) reshuffles the response variable, and 2) calculates the mean of each group in the reshuffled data. Store the means in a vector of length 3.</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#x and y are continuous variables and Display the relationship between the variables, Include a fitted regression line</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>shuffle_values <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    data<span class="sc">$</span>res <span class="ot">&lt;-</span> <span class="fu">sample</span>(data<span class="sc">$</span>res)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    group_means <span class="ot">&lt;-</span> <span class="fu">tapply</span>(data<span class="sc">$</span>res, data<span class="sc">$</span>group, mean)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(group_means)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Use a for loop to repeat the function in b 100 times. Store the results in a data frame that has 1 column indicating the replicate number and 1 column for each new group mean, for a total of 4 columns.</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>n_sim <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>sim <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">replicate =</span> <span class="dv">1</span><span class="sc">:</span>n_sim, <span class="at">Group1_mean =</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_sim), <span class="at">Group2_mean =</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_sim), <span class="at">Group3_mean =</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_sim))</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (z <span class="cf">in</span> <span class="fu">seq_len</span>(n_sim)) {</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    means <span class="ot">&lt;-</span> <span class="fu">shuffle_values</span>(df_three_group_dataset)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    sim<span class="sc">$</span>Group1_mean[z] <span class="ot">&lt;-</span>means[<span class="dv">1</span>]</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    sim<span class="sc">$</span>Group2_mean[z] <span class="ot">&lt;-</span>means[<span class="dv">2</span>]</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    sim<span class="sc">$</span>Group3_mean[z] <span class="ot">&lt;-</span>means[<span class="dv">3</span>]</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co">#Use qplot() to create a histogram of the means for each reshuffled group. Or, if you want a challenge, use ggplot() to overlay all 3 histograms in the same figure. How do the distributions of reshuffled means compare to the original means?</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>group1_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Mean =</span> sim<span class="sc">$</span>Group1_mean)</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>group2_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Mean =</span> sim<span class="sc">$</span>Group2_mean)</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>group3_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Mean =</span> sim<span class="sc">$</span>Group3_mean)</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co">#Histogram 1</span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(group1_data, <span class="fu">aes</span>(<span class="at">x =</span> Mean)) <span class="sc">+</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>, <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> group_means[<span class="dv">1</span>], <span class="at">color =</span> <span class="st">"pink"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Group 1 - Randomization Distribution"</span>,</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Mean Value"</span>,</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Petal.Length)) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Sepal Length vs Petal Length in Iris Flowers Dataset"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Sepal Length"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Petal Length"</span>,)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-ℹ Please use `linewidth` instead.</code></pre>
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Homework_9_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Homework_10_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Histogram 2</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(group2_data, <span class="fu">aes</span>(<span class="at">x =</span> Mean)) <span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>, <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> group_means[<span class="dv">2</span>], <span class="at">color =</span> <span class="st">"pink"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Group 2 - Randomization Distribution"</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Mean Value"</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#(x) is a categorical variable representing groups (e.g., treatment A/B/C), (y) is continuous</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Species, <span class="at">y =</span> Sepal.Width)) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Boxplot: Sepal Width by Species"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="st">"Species"</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="st">"Sepal Width (cm)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Homework_9_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Homework_10_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Histogram 3</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(group3_data, <span class="fu">aes</span>(<span class="at">x =</span> Mean)) <span class="sc">+</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>, <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> group_means[<span class="dv">3</span>], <span class="at">color =</span> <span class="st">"pink"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Group 3 - Randomization Distribution"</span>,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Mean Value"</span>,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Use a dataset where (x) is continuous (y) is binary (0/1)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#First i need to create a binary variable where 1 if setosa or 0 if not</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>iris<span class="sc">$</span>is_setosa <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(iris<span class="sc">$</span>Species <span class="sc">==</span> <span class="st">"setosa"</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Petal.Length, <span class="at">y =</span> is_setosa)) <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"glm"</span>, <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">"binomial"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: glm.fit: algorithm did not converge</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred</code></pre>
+</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Homework_9_files/figure-html/unnamed-chunk-1-3.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Homework_10_files/figure-html/unnamed-chunk-1-3.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the distributions reshuffled shows what the means would look like if there was no difference between difference groups. Since there were original group means above and belowed the reshuffled means, it shows that the differences are not due to chance but moreso that there are true differences between means. </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q4 using Hogan_Plecopetra_dataset bc it has a bunch of discrete x and y, Use a dataset where both variables are categorical. </span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># had to clear off top part of the file because when converting to csv positron wasn't reading it right. </span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># notes- not sure why there is a red bar on the left of the figure, I think its another county that wasn't coverted properly or a record type that was wrong or something but I gave up</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>Plecopetera_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"Hogan_Plecoptera_Dataset_copy_csv.csv"</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Plecopetera_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  ID       Type                   ownerInstitutionCode            catalogNumber
+1  1 Collection                                   WKUC                         
+2  2 Literature Literature (Duffield and Nelson, 1990)                         
+3  3 Literature Literature (Duffield and Nelson, 1993)                         
+4  4 Collection                                   INHS Insect Collection 654545
+5  5 Collection                                   RFSC         Plecoptera 16976
+6  6 Collection                                   RFSC         Plecoptera 16977
+   kingdom     phylum   class      order    family      genus specificEpithet
+1 Animalia Arthropoda Insecta Plecoptera Capniidae Allocapnia          aurora
+2 Animalia Arthropoda Insecta Plecoptera Capniidae Allocapnia          aurora
+3 Animalia Arthropoda Insecta Plecoptera Capniidae Allocapnia          aurora
+4 Animalia Arthropoda Insecta Plecoptera Capniidae Allocapnia         curiosa
+5 Animalia Arthropoda Insecta Plecoptera Capniidae Allocapnia         curiosa
+6 Animalia Arthropoda Insecta Plecoptera Capniidae Allocapnia         curiosa
+  scientificNameAuthorship   vernacularName taxonomicStatus taxonRank
+1             Ricker, 1952   Aurora Snowfly        accepted   species
+2             Ricker, 1952   Aurora Snowfly        accepted   species
+3             Ricker, 1952   Aurora Snowfly        accepted   species
+4             Frison, 1943 Peculiar Snowfly        accepted   species
+5             Frison, 1942 Peculiar Snowfly        accepted   species
+6             Frison, 1942 Peculiar Snowfly        accepted   species
+  typeStatus identifiedBy dateIdentified eventDate month day year preparation
+1   not type   P.N. Hogan           2020    3/7/20     3   7 2020        vial
+2   not type                          NA      &lt;NA&gt;    NA  NA   NA            
+3   not type                          NA      &lt;NA&gt;    NA  NA   NA            
+4   not type  R.E. DeWalt           2013   3/12/13     3  12 2013        Vial
+5   not type                          NA   2/14/96     2  14 1996        Vial
+6   not type                          NA   2/14/96     2  14 1996        Vial
+     recordedBy fieldNumber habitat     basisOfRecord adultMale adultFemale
+1    P.N. Hogan  PNH-019-20  stream Preservedspecimen         1           1
+2                                                             0           0
+3 R.M. Duffield                                               0           0
+4   R.E. DeWalt                                               0           1
+5  R.F. Surdick              stream PreservedSpecimen         0           0
+6  R.F. Surdick              stream PreservedSpecimen         0           0
+  immatureNymph X1uvium individualCount          sex lifeStage country
+1             0       0               2 male, female     adult     USA
+2             0       0              31                  adult     USA
+3             0       0               1       female     adult     USA
+4             0       0               1                            USA
+5             0       0               0                            USA
+6             0       0               0                            USA
+  countryCode stateProvince    county                     waterBody
+1          US      Maryland   Charles tributary to Mattawoman Creek
+2          US      Maryland Frederick             Big Hunting Creek
+3          US      Maryland Frederick             Big Hunting Creek
+4          US      Maryland  Allegany              Flintstone Creek
+5          US      Maryland  Allegany                              
+6          US      Maryland  Allegany     tributaries of Town Creek
+                                                                  locality
+1 MD-225 Hawthorne Rd., just before Arlough Private Lane, Myrtle Grove WMA
+2                                                   Catoctin Mountain Park
+3                                                   Catoctin Mountain Park
+4                                                       Flintstone at I-68
+5                                                               Flintstone
+6                                        Wagner Road, Northeast of Oldtown
+  coordinateUncertaintyInMeters geodeticDatum georeferencedBy
+1                            10        WGS 84      P.N. Hogan
+2                         10000         WGS84      P.N. Hogan
+3                         10000         WGS84      P.N. Hogan
+4                            10                              
+5                           100         WGS84      P.N. Hogan
+6                            10         WGS84      P.N. Hogan
+  georeferenceSources                 datasetName    accessRights
+1        Google Earth Maryland Plecoptera Project No Restrictions
+2     Acme.mapper 2.2 Maryland Plecoptera Project No restrictions
+3     Acme.mapper 2.2 Maryland Plecoptera Project No restrictions
+4                     Maryland Plecoptera Project No restrictions
+5     mapper.acme.com Maryland Plecoptera Project No restrictions
+6     mapper.acme.com Maryland Plecoptera Project No restrictions
+                                       notes elevation_m decimalLongitude
+1                                                     13        -77.09832
+2                                                    454        -77.45000
+3                                                    454        -77.45000
+4                                                    247        -78.56641
+5 Letter to Dr. Scott Grubbs, year uncertain         247        -78.56716
+6 Letter to Dr. Scott Grubbs, year uncertain         229        -78.58585
+  decimalLatitude
+1        38.56471
+2     39.61666667
+3     39.61666667
+4        39.70501
+5        39.70288
+6        39.56934</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Plecopetera_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   402 obs. of  50 variables:
+ $ ID                           : chr  "1" "2" "3" "4" ...
+ $ Type                         : chr  "Collection" "Literature" "Literature" "Collection" ...
+ $ ownerInstitutionCode         : chr  "WKUC" "Literature (Duffield and Nelson, 1990)" "Literature (Duffield and Nelson, 1993)" "INHS" ...
+ $ catalogNumber                : chr  "" "" "" "Insect Collection 654545" ...
+ $ kingdom                      : chr  "Animalia" "Animalia" "Animalia" "Animalia" ...
+ $ phylum                       : chr  "Arthropoda" "Arthropoda" "Arthropoda" "Arthropoda" ...
+ $ class                        : chr  "Insecta" "Insecta" "Insecta" "Insecta" ...
+ $ order                        : chr  "Plecoptera" "Plecoptera" "Plecoptera" "Plecoptera" ...
+ $ family                       : chr  "Capniidae" "Capniidae" "Capniidae" "Capniidae" ...
+ $ genus                        : chr  "Allocapnia" "Allocapnia" "Allocapnia" "Allocapnia" ...
+ $ specificEpithet              : chr  "aurora" "aurora" "aurora" "curiosa" ...
+ $ scientificNameAuthorship     : chr  "Ricker, 1952" "Ricker, 1952" "Ricker, 1952" "Frison, 1943" ...
+ $ vernacularName               : chr  "Aurora Snowfly" "Aurora Snowfly" "Aurora Snowfly" "Peculiar Snowfly" ...
+ $ taxonomicStatus              : chr  "accepted" "accepted" "accepted" "accepted" ...
+ $ taxonRank                    : chr  "species" "species" "species" "species" ...
+ $ typeStatus                   : chr  "not type" "not type" "not type" "not type" ...
+ $ identifiedBy                 : chr  "P.N. Hogan" "" "" "R.E. DeWalt" ...
+ $ dateIdentified               : int  2020 NA NA 2013 NA NA NA 2020 2020 2020 ...
+ $ eventDate                    : chr  "3/7/20" NA NA "3/12/13" ...
+ $ month                        : int  3 NA NA 3 2 2 2 3 3 3 ...
+ $ day                          : int  7 NA NA 12 14 14 14 10 11 11 ...
+ $ year                         : int  2020 NA NA 2013 1996 1996 1996 2020 2020 2020 ...
+ $ preparation                  : chr  "vial" "" "" "Vial" ...
+ $ recordedBy                   : chr  "P.N. Hogan" "" "R.M. Duffield" "R.E. DeWalt" ...
+ $ fieldNumber                  : chr  "PNH-019-20" "" "" "" ...
+ $ habitat                      : chr  "stream" "" "" "" ...
+ $ basisOfRecord                : chr  "Preservedspecimen" "" "" "" ...
+ $ adultMale                    : int  1 0 0 0 0 0 0 1 9 5 ...
+ $ adultFemale                  : int  1 0 0 1 0 0 0 0 2 3 ...
+ $ immatureNymph                : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ X1uvium                      : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ individualCount              : int  2 31 1 1 0 0 0 1 11 8 ...
+ $ sex                          : chr  "male, female" "" "female" "" ...
+ $ lifeStage                    : chr  "adult" "adult" "adult" "" ...
+ $ country                      : chr  "USA" "USA" "USA" "USA" ...
+ $ countryCode                  : chr  "US" "US" "US" "US" ...
+ $ stateProvince                : chr  "Maryland" "Maryland" "Maryland" "Maryland" ...
+ $ county                       : chr  "Charles" "Frederick" "Frederick" "Allegany" ...
+ $ waterBody                    : chr  "tributary to Mattawoman Creek" "Big Hunting Creek" "Big Hunting Creek" "Flintstone Creek" ...
+ $ locality                     : chr  "MD-225 Hawthorne Rd., just before Arlough Private Lane, Myrtle Grove WMA" "Catoctin Mountain Park" "Catoctin Mountain Park" "Flintstone at I-68" ...
+ $ coordinateUncertaintyInMeters: int  10 10000 10000 10 100 10 100 10 10 10 ...
+ $ geodeticDatum                : chr  "WGS 84" "WGS84" "WGS84" "" ...
+ $ georeferencedBy              : chr  "P.N. Hogan" "P.N. Hogan" "P.N. Hogan" "" ...
+ $ georeferenceSources          : chr  "Google Earth" "Acme.mapper 2.2" "Acme.mapper 2.2" "" ...
+ $ datasetName                  : chr  "Maryland Plecoptera Project" "Maryland Plecoptera Project" "Maryland Plecoptera Project" "Maryland Plecoptera Project" ...
+ $ accessRights                 : chr  "No Restrictions" "No restrictions" "No restrictions" "No restrictions" ...
+ $ notes                        : chr  "" "" "" "" ...
+ $ elevation_m                  : int  13 454 454 247 247 229 208 270 215 222 ...
+ $ decimalLongitude             : num  -77.1 -77.5 -77.5 -78.6 -78.6 ...
+ $ decimalLatitude              : chr  "38.56471" "39.61666667" "39.61666667" "39.70501" ...</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Plecopetera_data, <span class="fu">aes</span>(<span class="at">x =</span> Type, <span class="at">fill =</span> county)) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Proportion of Record Types by County"</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Record Type"</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Proportion"</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"County"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Homework_10_files/figure-html/unnamed-chunk-1-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 
 
