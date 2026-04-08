@@ -1,0 +1,85 @@
+---
+title: "Homework 11"
+format: html
+---
+
+
+```{python}
+
+#making list
+
+my_list = [12, 33.3, 37, "ur mom", True, [1, 2, 3, 4, 5]]
+
+#1) Pull out the third element in the list and store it as a new object.
+
+third_element = my_list[2]
+print(third_element)
+
+listWithinList = my_list[5][2]
+print(listWithinList)
+# removes character sting "ur mom"
+my_list.remove("ur mom")
+#adds character string "ur dad" at the end of list
+my_list.append("ur dad")
+
+print(my_list)
+
+
+#Create a dictionary that contains at least 5 keys and 5 values.
+
+my_dict = {
+    "name": "Armando",
+    "species": "human",
+    "squat 1 rep max": 445,
+    "bench 1 rep max": 315,
+    "am i him?": True
+}
+#printing keys and values 
+keys = my_dict.keys()
+values = my_dict.values()
+
+#adding to dict using update function
+my_dict.update({"what about deadlift?": "my back hurts"})
+
+#deleting from dictionary bc im no longer him
+my_dict.pop("am i him?")
+
+print(my_dict)
+
+# add new element to the dictionary.
+my_dict["the bench is still impressive for 175lbs bw"] = True
+
+# remove element from the dictionary.
+del my_dict["species"]
+
+print(my_dict)
+
+#Create a numpy array of length 100 with values bound between 0 and 1 and save as arr1.
+import numpy as np
+arr1 = np.random.rand(100)
+#Extract the last 10 elements using negative indexing
+last_10 = arr1[-10:]
+print(last_10)
+
+#Convert the numeric (float) data to character strings and then convert back to a float.
+arr_str = arr1.astype(str)
+print(arr1.astype(str))
+arr_float = arr_str.astype(float)
+print(arr_str.astype(float))
+
+# Reshape the length 100 array (arr1) to be a 10x10, 2D array called arr2D.
+arr2D = arr1.reshape(10, 10)
+print(arr2D.shape)
+
+# Create a binary array that is 10x10 where 1s are generated with a probablilty of .2 and 0s with a probability of .8 and store as arr_bin.
+
+arr_bin = np.random.choice([0, 1], size=(10, 10), p=[0.8, 0.2])
+print(arr_bin)
+#Join these two arrays (arr2D and arr_bin) to be a 10x10x2 3D data cube where the first layer is the float data and the second layer is the binary array.
+
+data_cube = np.stack((arr2D, arr_bin))
+print(data_cube)
+
+```
+
+
