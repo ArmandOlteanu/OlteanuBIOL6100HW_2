@@ -1,0 +1,92 @@
+---
+title: "Homework 13"
+format: html
+---
+
+Question 1
+```{python}
+import pandas as pd
+import plotly.express as px
+
+gap = px.data.gapminder().query("continent == 'Europe'").query("year == 1962")
+
+Figure1 = px.choropleth(
+    gap,
+    locations="iso_alpha",
+    color="gdpPercap",
+    hover_name="country",
+    hover_data={
+    "lifeExp": ":.1f",
+    "pop": ":,",
+    "gdpPercap": ":,.0f",
+    },
+    color_continuous_scale= "Viridis",
+    title="GDP Per Capita in Europe During 1962"
+    )
+Figure1.show()
+
+#Adding one new argument, projection="mercator". found in choropleth([data_frame, lat, lon, …]). this changes the flat map into a flat map that is stretched at the poles 
+Figure2 = px.choropleth(
+    gap,
+    locations="iso_alpha",
+    color="gdpPercap",
+    hover_name="country",
+    hover_data={
+    "lifeExp": ":.1f",
+    "pop": ":,",
+    "gdpPercap": ":,.0f",
+    },
+    color_continuous_scale= "Viridis",
+    title="GDP Per Capita in Europe During 1962",
+    projection="mercator"
+    )
+Figure2.show()
+
+
+```
+
+
+
+Questions 2
+```{python}
+
+import pandas as pd
+import plotly.express as px
+gap = px.data.gapminder().query("year == 1962") 
+
+bubble_fig = px.scatter_geo(
+    gap,
+    locations="iso_alpha",
+    size="pop",
+    color="continent",
+    hover_name="country",
+    hover_data={
+        "pop": ":,",
+        "lifeExp": ":.1f",
+        "gdpPercap": ":,.0f",
+    },
+    title="World Pop by Country in 1962"
+
+)
+
+bubble_fig.show()
+
+#Adding new argument, projection="orthographic". found in choropleth([data_frame, lat, lon, …]). this changes the flat map into a 3d globe that looks cooler and more accurate to what the world looks like.
+bubble_fig2 = px.scatter_geo(
+    gap,
+    locations="iso_alpha",
+    size="pop",
+    color="continent",
+    hover_name="country",
+    hover_data={
+        "pop": ":,",
+        "lifeExp": ":.1f",
+        "gdpPercap": ":,.0f",
+    },
+    title="World Pop by Country in 1962",
+    projection="orthographic"
+
+)
+
+bubble_fig2.show()
+```
