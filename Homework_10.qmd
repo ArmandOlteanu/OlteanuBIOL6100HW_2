@@ -10,7 +10,7 @@ head(iris)
 
 #x and y are continuous variables and Display the relationship between the variables, Include a fitted regression line
 
-ggplot(iris, aes(x = Sepal.Length, y = Petal.Length)) +
+ggplot(iris, aes(x = Sepal.Length, y = Petal.Length, fill = Species)) +
   geom_point() +
   geom_smooth(method = "lm") +
   labs(title = "Sepal Length vs Petal Length in Iris Flowers Dataset",
@@ -21,7 +21,7 @@ ggplot(iris, aes(x = Sepal.Length, y = Petal.Length)) +
 
 ggplot(iris, aes(x = Species, y = Sepal.Width)) +
   geom_boxplot() +
-  geom_jitter() +
+  geom_jitter(width = 0.2, alpha = 0.4, size = .75) +
   labs(title = "Boxplot: Sepal Width by Species",
   x = "Species",
   y = "Sepal Width (cm)")
@@ -42,7 +42,9 @@ Plecopetera_data <- read.csv("Hogan_Plecoptera_Dataset_copy_csv.csv")
 head(Plecopetera_data)
 str(Plecopetera_data)
 
-ggplot(Plecopetera_data, aes(x = Type, fill = county)) +
+clean_plecopetera_data <- Plecopetera_data[Plecopetera_data$Type != "" & !is.na(Plecopetera_data$type),]
+
+ggplot(clean_plecopetera_data, aes(x = Type, fill = county)) +
   geom_bar() +
   labs(title = "Proportion of Record Types by County",
        x = "Record Type",

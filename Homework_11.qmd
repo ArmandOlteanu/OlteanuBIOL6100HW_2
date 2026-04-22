@@ -25,6 +25,9 @@ my_list.append("ur dad")
 print(my_list)
 
 
+```
+
+```{python}
 #Create a dictionary that contains at least 5 keys and 5 values.
 
 my_dict = {
@@ -53,6 +56,12 @@ my_dict["the bench is still impressive for 175lbs bw"] = True
 del my_dict["species"]
 
 print(my_dict)
+
+```
+
+
+```{python}
+
 
 #Create a numpy array of length 100 with values bound between 0 and 1 and save as arr1.
 import numpy as np

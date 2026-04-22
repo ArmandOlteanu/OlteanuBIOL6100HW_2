@@ -169,7 +169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="f60128fc" class="cell" data-execution_count="1">
+<div id="5b0aab07" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#making list</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> [<span class="dv">12</span>, <span class="fl">33.3</span>, <span class="dv">37</span>, <span class="st">"ur mom"</span>, <span class="va">True</span>, [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]]</span>
@@ -186,174 +186,207 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">#adds character string "ur dad" at the end of list</span></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>my_list.append(<span class="st">"ur dad"</span>)</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_list)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a dictionary that contains at least 5 keys and 5 values.</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>my_dict <span class="op">=</span> {</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"name"</span>: <span class="st">"Armando"</span>,</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"species"</span>: <span class="st">"human"</span>,</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"squat 1 rep max"</span>: <span class="dv">445</span>,</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"bench 1 rep max"</span>: <span class="dv">315</span>,</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"am i him?"</span>: <span class="va">True</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">#printing keys and values </span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>keys <span class="op">=</span> my_dict.keys()</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> my_dict.values()</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">#adding to dict using update function</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>my_dict.update({<span class="st">"what about deadlift?"</span>: <span class="st">"my back hurts"</span>})</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co">#deleting from dictionary bc im no longer him</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>my_dict.pop(<span class="st">"am i him?"</span>)</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_dict)</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co"># add new element to the dictionary.</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>my_dict[<span class="st">"the bench is still impressive for 175lbs bw"</span>] <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="co"># remove element from the dictionary.</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> my_dict[<span class="st">"species"</span>]</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_dict)</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a numpy array of length 100 with values bound between 0 and 1 and save as arr1.</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>arr1 <span class="op">=</span> np.random.rand(<span class="dv">100</span>)</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="co">#Extract the last 10 elements using negative indexing</span></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>last_10 <span class="op">=</span> arr1[<span class="op">-</span><span class="dv">10</span>:]</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(last_10)</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="co">#Convert the numeric (float) data to character strings and then convert back to a float.</span></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>arr_str <span class="op">=</span> arr1.astype(<span class="bu">str</span>)</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr1.astype(<span class="bu">str</span>))</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>arr_float <span class="op">=</span> arr_str.astype(<span class="bu">float</span>)</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr_str.astype(<span class="bu">float</span>))</span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Reshape the length 100 array (arr1) to be a 10x10, 2D array called arr2D.</span></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>arr2D <span class="op">=</span> arr1.reshape(<span class="dv">10</span>, <span class="dv">10</span>)</span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr2D.shape)</span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a binary array that is 10x10 where 1s are generated with a probablilty of .2 and 0s with a probability of .8 and store as arr_bin.</span></span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>arr_bin <span class="op">=</span> np.random.choice([<span class="dv">0</span>, <span class="dv">1</span>], size<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">10</span>), p<span class="op">=</span>[<span class="fl">0.8</span>, <span class="fl">0.2</span>])</span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr_bin)</span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="co">#Join these two arrays (arr2D and arr_bin) to be a 10x10x2 3D data cube where the first layer is the float data and the second layer is the binary array.</span></span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>data_cube <span class="op">=</span> np.stack((arr2D, arr_bin))</span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data_cube)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_list)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>37
 3
-[12, 33.3, 37, True, [1, 2, 3, 4, 5], 'ur dad']
-{'name': 'Armando', 'species': 'human', 'squat 1 rep max': 445, 'bench 1 rep max': 315, 'what about deadlift?': 'my back hurts'}
-{'name': 'Armando', 'squat 1 rep max': 445, 'bench 1 rep max': 315, 'what about deadlift?': 'my back hurts', 'the bench is still impressive for 175lbs bw': True}
-[0.86896817 0.57588082 0.13958504 0.39393249 0.93071018 0.1714469
- 0.54292992 0.98596554 0.75634208 0.33786838]
-['0.9556401485564399' '0.17247647606485084' '0.6989926596139976'
- '0.5264556032632427' '0.7814549562323237' '0.3952909828178265'
- '0.7037254764291678' '0.34680455130533216' '0.8474264900983784'
- '0.6045207958076697' '0.8346542033375699' '0.5189286575406948'
- '0.5924664828736463' '0.9851049895544673' '0.6499268912853838'
- '0.7622107975223206' '0.4429003829713699' '0.731068152940356'
- '0.9356394838110006' '0.31695054747953244' '0.2917293719883196'
- '0.7330468350756657' '0.8919471024632468' '0.020121464220399288'
- '0.2883778397482989' '0.7441712847421982' '0.01924329583468709'
- '0.01889554476319444' '0.6029561306466904' '0.9424142513238781'
- '0.6761019535545464' '0.5839238851281082' '0.8247376947163637'
- '0.4673221506612807' '0.11045782165747842' '0.3515529209310406'
- '0.8664040328977716' '0.07803121694161275' '0.14120496292121676'
- '0.35783992070480986' '0.1773447851126515' '0.9935241602637254'
- '0.8261915577544489' '0.5464534471757146' '0.9868283126265879'
- '0.5540843735797483' '0.4409200175554505' '0.3406953329287933'
- '0.5655815882099885' '0.23703741220330388' '0.9284152921463602'
- '0.796567315839449' '0.0015719620638821041' '0.9573265851022915'
- '0.527427726994204' '0.63254741180085' '0.06105144619223579'
- '0.6266377379519968' '0.6011543940520708' '0.9320923936216692'
- '0.3119522882330894' '0.2571200246281202' '0.5238191156633405'
- '0.5356251683087129' '0.5115943225804441' '0.39513009300349833'
- '0.20165861898576343' '0.2261640027174877' '0.20769546627681124'
- '0.2706683926847814' '0.8485080994830819' '0.31083449220110604'
- '0.8966903961002373' '0.14907878701393018' '0.5947891110795248'
- '0.7901819482309358' '0.46367757138697085' '0.8793182354052756'
- '0.7601172777568592' '0.7460871230155577' '0.4053362520496667'
- '0.22782424117827815' '0.506682379626887' '0.35287916252195106'
- '0.8179724534645738' '0.8799779223034051' '0.970685466468444'
- '0.4869227131507341' '0.8788820626411639' '0.5567945969342184'
- '0.868968167536267' '0.5758808169719435' '0.13958504329726007'
- '0.3939324931898507' '0.9307101813348797' '0.17144690164153087'
- '0.542929920861556' '0.9859655423053494' '0.7563420800048323'
- '0.3378683783360652']
-[0.95564015 0.17247648 0.69899266 0.5264556  0.78145496 0.39529098
- 0.70372548 0.34680455 0.84742649 0.6045208  0.8346542  0.51892866
- 0.59246648 0.98510499 0.64992689 0.7622108  0.44290038 0.73106815
- 0.93563948 0.31695055 0.29172937 0.73304684 0.8919471  0.02012146
- 0.28837784 0.74417128 0.0192433  0.01889554 0.60295613 0.94241425
- 0.67610195 0.58392389 0.82473769 0.46732215 0.11045782 0.35155292
- 0.86640403 0.07803122 0.14120496 0.35783992 0.17734479 0.99352416
- 0.82619156 0.54645345 0.98682831 0.55408437 0.44092002 0.34069533
- 0.56558159 0.23703741 0.92841529 0.79656732 0.00157196 0.95732659
- 0.52742773 0.63254741 0.06105145 0.62663774 0.60115439 0.93209239
- 0.31195229 0.25712002 0.52381912 0.53562517 0.51159432 0.39513009
- 0.20165862 0.226164   0.20769547 0.27066839 0.8485081  0.31083449
- 0.8966904  0.14907879 0.59478911 0.79018195 0.46367757 0.87931824
- 0.76011728 0.74608712 0.40533625 0.22782424 0.50668238 0.35287916
- 0.81797245 0.87997792 0.97068547 0.48692271 0.87888206 0.5567946
- 0.86896817 0.57588082 0.13958504 0.39393249 0.93071018 0.1714469
- 0.54292992 0.98596554 0.75634208 0.33786838]
+[12, 33.3, 37, True, [1, 2, 3, 4, 5], 'ur dad']</code></pre>
+</div>
+</div>
+<div id="d8e78c3d" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a dictionary that contains at least 5 keys and 5 values.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>my_dict <span class="op">=</span> {</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"name"</span>: <span class="st">"Armando"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"species"</span>: <span class="st">"human"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"squat 1 rep max"</span>: <span class="dv">445</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"bench 1 rep max"</span>: <span class="dv">315</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"am i him?"</span>: <span class="va">True</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#printing keys and values </span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>keys <span class="op">=</span> my_dict.keys()</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> my_dict.values()</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">#adding to dict using update function</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>my_dict.update({<span class="st">"what about deadlift?"</span>: <span class="st">"my back hurts"</span>})</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">#deleting from dictionary bc im no longer him</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>my_dict.pop(<span class="st">"am i him?"</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_dict)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># add new element to the dictionary.</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>my_dict[<span class="st">"the bench is still impressive for 175lbs bw"</span>] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co"># remove element from the dictionary.</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> my_dict[<span class="st">"species"</span>]</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_dict)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'name': 'Armando', 'species': 'human', 'squat 1 rep max': 445, 'bench 1 rep max': 315, 'what about deadlift?': 'my back hurts'}
+{'name': 'Armando', 'squat 1 rep max': 445, 'bench 1 rep max': 315, 'what about deadlift?': 'my back hurts', 'the bench is still impressive for 175lbs bw': True}</code></pre>
+</div>
+</div>
+<div id="e6a4178b" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a numpy array of length 100 with values bound between 0 and 1 and save as arr1.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>arr1 <span class="op">=</span> np.random.rand(<span class="dv">100</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Extract the last 10 elements using negative indexing</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>last_10 <span class="op">=</span> arr1[<span class="op">-</span><span class="dv">10</span>:]</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(last_10)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Convert the numeric (float) data to character strings and then convert back to a float.</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>arr_str <span class="op">=</span> arr1.astype(<span class="bu">str</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr1.astype(<span class="bu">str</span>))</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>arr_float <span class="op">=</span> arr_str.astype(<span class="bu">float</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr_str.astype(<span class="bu">float</span>))</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Reshape the length 100 array (arr1) to be a 10x10, 2D array called arr2D.</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>arr2D <span class="op">=</span> arr1.reshape(<span class="dv">10</span>, <span class="dv">10</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr2D.shape)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a binary array that is 10x10 where 1s are generated with a probablilty of .2 and 0s with a probability of .8 and store as arr_bin.</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>arr_bin <span class="op">=</span> np.random.choice([<span class="dv">0</span>, <span class="dv">1</span>], size<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">10</span>), p<span class="op">=</span>[<span class="fl">0.8</span>, <span class="fl">0.2</span>])</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr_bin)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co">#Join these two arrays (arr2D and arr_bin) to be a 10x10x2 3D data cube where the first layer is the float data and the second layer is the binary array.</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>data_cube <span class="op">=</span> np.stack((arr2D, arr_bin))</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data_cube)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[0.09840445 0.54604801 0.48623488 0.74327113 0.80284245 0.35108233
+ 0.42395916 0.7596147  0.00583152 0.07990246]
+['0.38689833722543265' '0.12750590353062197' '0.25744214471901794'
+ '0.08719161660513008' '0.39943413076471534' '0.05375615757975927'
+ '0.7146100298686523' '0.274764124575537' '0.08880286119773095'
+ '0.24246113611725018' '0.030634644956265555' '0.9830291316567711'
+ '0.21253846734996684' '0.4840204361825673' '0.43954128076337273'
+ '0.32815310511534757' '0.09979176241711418' '0.33465842347155517'
+ '0.1836223215244217' '0.3326164962206063' '0.8494304650512468'
+ '0.7010885982247181' '0.7935218828743804' '0.0969178013930615'
+ '0.00772223636092928' '0.3048123829308794' '0.7662000487148231'
+ '0.19141384202229128' '0.538874780168546' '0.22217103267348925'
+ '0.5977745071540326' '0.9586030854017967' '0.4774812280206914'
+ '0.8007608589297295' '0.3187050131806356' '0.965878383492424'
+ '0.10108116608518614' '0.6843669750959215' '0.18839171203957772'
+ '0.9188088603195691' '0.8463689126292724' '0.3630351885326051'
+ '0.5920404551275' '0.41633462155944123' '0.8246664064443386'
+ '0.222980916124491' '0.3242858893822065' '0.0003836290159483502'
+ '0.8771317173879054' '0.7475839406544117' '0.5792842160418462'
+ '0.1738947913317641' '0.15831740096333913' '0.7590614279428908'
+ '0.9714582116058013' '0.7586963550700869' '0.1673259357511856'
+ '0.04412213040134472' '0.46480123942698814' '0.7858269909064226'
+ '0.14830977104381438' '0.7036182067443943' '0.024641502421812067'
+ '0.22269392964036616' '0.6959232363639126' '0.2406528374971807'
+ '0.9499125426829941' '0.33581051617709723' '0.7363456338517755'
+ '0.8836775961468027' '0.14517432018479748' '0.8284031844932696'
+ '0.40026134120331136' '0.42639704131703415' '0.019579758299159145'
+ '0.03795840924678051' '0.3153982425161215' '0.8586607994387453'
+ '0.3549593282593204' '0.6384132110233162' '0.3295402651374423'
+ '0.07853759349604661' '0.9977213701329912' '0.11979843355995956'
+ '0.2032696020498611' '0.8472151646868087' '0.5837414663057349'
+ '0.003665335299360306' '0.8866634035674101' '0.1360655968988611'
+ '0.09840444626505551' '0.5460480137890341' '0.4862348785092965'
+ '0.7432711304579898' '0.8028424486419022' '0.3510823261244177'
+ '0.423959163524138' '0.7596147039188009' '0.005831519523941564'
+ '0.07990245926267392']
+[3.86898337e-01 1.27505904e-01 2.57442145e-01 8.71916166e-02
+ 3.99434131e-01 5.37561576e-02 7.14610030e-01 2.74764125e-01
+ 8.88028612e-02 2.42461136e-01 3.06346450e-02 9.83029132e-01
+ 2.12538467e-01 4.84020436e-01 4.39541281e-01 3.28153105e-01
+ 9.97917624e-02 3.34658423e-01 1.83622322e-01 3.32616496e-01
+ 8.49430465e-01 7.01088598e-01 7.93521883e-01 9.69178014e-02
+ 7.72223636e-03 3.04812383e-01 7.66200049e-01 1.91413842e-01
+ 5.38874780e-01 2.22171033e-01 5.97774507e-01 9.58603085e-01
+ 4.77481228e-01 8.00760859e-01 3.18705013e-01 9.65878383e-01
+ 1.01081166e-01 6.84366975e-01 1.88391712e-01 9.18808860e-01
+ 8.46368913e-01 3.63035189e-01 5.92040455e-01 4.16334622e-01
+ 8.24666406e-01 2.22980916e-01 3.24285889e-01 3.83629016e-04
+ 8.77131717e-01 7.47583941e-01 5.79284216e-01 1.73894791e-01
+ 1.58317401e-01 7.59061428e-01 9.71458212e-01 7.58696355e-01
+ 1.67325936e-01 4.41221304e-02 4.64801239e-01 7.85826991e-01
+ 1.48309771e-01 7.03618207e-01 2.46415024e-02 2.22693930e-01
+ 6.95923236e-01 2.40652837e-01 9.49912543e-01 3.35810516e-01
+ 7.36345634e-01 8.83677596e-01 1.45174320e-01 8.28403184e-01
+ 4.00261341e-01 4.26397041e-01 1.95797583e-02 3.79584092e-02
+ 3.15398243e-01 8.58660799e-01 3.54959328e-01 6.38413211e-01
+ 3.29540265e-01 7.85375935e-02 9.97721370e-01 1.19798434e-01
+ 2.03269602e-01 8.47215165e-01 5.83741466e-01 3.66533530e-03
+ 8.86663404e-01 1.36065597e-01 9.84044463e-02 5.46048014e-01
+ 4.86234879e-01 7.43271130e-01 8.02842449e-01 3.51082326e-01
+ 4.23959164e-01 7.59614704e-01 5.83151952e-03 7.99024593e-02]
 (10, 10)
-[[1 0 0 0 0 1 0 0 1 0]
- [0 0 0 0 0 1 0 1 0 0]
- [0 0 0 0 0 1 0 0 1 1]
- [0 0 0 0 1 1 0 1 0 1]
- [0 1 0 1 0 0 0 0 0 0]
- [0 0 0 0 0 1 0 1 0 0]
- [0 0 0 0 0 0 0 0 0 0]
- [0 0 0 0 1 0 0 0 0 0]
- [1 0 0 0 0 0 1 0 0 0]
- [0 0 0 0 0 1 1 0 0 0]]
-[[[0.95564015 0.17247648 0.69899266 0.5264556  0.78145496 0.39529098
-   0.70372548 0.34680455 0.84742649 0.6045208 ]
-  [0.8346542  0.51892866 0.59246648 0.98510499 0.64992689 0.7622108
-   0.44290038 0.73106815 0.93563948 0.31695055]
-  [0.29172937 0.73304684 0.8919471  0.02012146 0.28837784 0.74417128
-   0.0192433  0.01889554 0.60295613 0.94241425]
-  [0.67610195 0.58392389 0.82473769 0.46732215 0.11045782 0.35155292
-   0.86640403 0.07803122 0.14120496 0.35783992]
-  [0.17734479 0.99352416 0.82619156 0.54645345 0.98682831 0.55408437
-   0.44092002 0.34069533 0.56558159 0.23703741]
-  [0.92841529 0.79656732 0.00157196 0.95732659 0.52742773 0.63254741
-   0.06105145 0.62663774 0.60115439 0.93209239]
-  [0.31195229 0.25712002 0.52381912 0.53562517 0.51159432 0.39513009
-   0.20165862 0.226164   0.20769547 0.27066839]
-  [0.8485081  0.31083449 0.8966904  0.14907879 0.59478911 0.79018195
-   0.46367757 0.87931824 0.76011728 0.74608712]
-  [0.40533625 0.22782424 0.50668238 0.35287916 0.81797245 0.87997792
-   0.97068547 0.48692271 0.87888206 0.5567946 ]
-  [0.86896817 0.57588082 0.13958504 0.39393249 0.93071018 0.1714469
-   0.54292992 0.98596554 0.75634208 0.33786838]]
+[[1 0 0 0 0 0 0 0 0 0]
+ [0 1 0 0 0 0 1 0 0 0]
+ [0 1 1 0 0 0 0 0 1 0]
+ [0 0 0 1 0 0 0 0 1 1]
+ [0 1 0 0 1 0 0 0 0 0]
+ [1 0 0 0 0 0 0 1 0 0]
+ [0 0 1 0 0 0 0 0 0 0]
+ [0 1 0 0 0 0 0 1 0 0]
+ [0 0 0 1 1 0 0 0 1 0]
+ [1 0 0 0 0 0 0 0 0 0]]
+[[[3.86898337e-01 1.27505904e-01 2.57442145e-01 8.71916166e-02
+   3.99434131e-01 5.37561576e-02 7.14610030e-01 2.74764125e-01
+   8.88028612e-02 2.42461136e-01]
+  [3.06346450e-02 9.83029132e-01 2.12538467e-01 4.84020436e-01
+   4.39541281e-01 3.28153105e-01 9.97917624e-02 3.34658423e-01
+   1.83622322e-01 3.32616496e-01]
+  [8.49430465e-01 7.01088598e-01 7.93521883e-01 9.69178014e-02
+   7.72223636e-03 3.04812383e-01 7.66200049e-01 1.91413842e-01
+   5.38874780e-01 2.22171033e-01]
+  [5.97774507e-01 9.58603085e-01 4.77481228e-01 8.00760859e-01
+   3.18705013e-01 9.65878383e-01 1.01081166e-01 6.84366975e-01
+   1.88391712e-01 9.18808860e-01]
+  [8.46368913e-01 3.63035189e-01 5.92040455e-01 4.16334622e-01
+   8.24666406e-01 2.22980916e-01 3.24285889e-01 3.83629016e-04
+   8.77131717e-01 7.47583941e-01]
+  [5.79284216e-01 1.73894791e-01 1.58317401e-01 7.59061428e-01
+   9.71458212e-01 7.58696355e-01 1.67325936e-01 4.41221304e-02
+   4.64801239e-01 7.85826991e-01]
+  [1.48309771e-01 7.03618207e-01 2.46415024e-02 2.22693930e-01
+   6.95923236e-01 2.40652837e-01 9.49912543e-01 3.35810516e-01
+   7.36345634e-01 8.83677596e-01]
+  [1.45174320e-01 8.28403184e-01 4.00261341e-01 4.26397041e-01
+   1.95797583e-02 3.79584092e-02 3.15398243e-01 8.58660799e-01
+   3.54959328e-01 6.38413211e-01]
+  [3.29540265e-01 7.85375935e-02 9.97721370e-01 1.19798434e-01
+   2.03269602e-01 8.47215165e-01 5.83741466e-01 3.66533530e-03
+   8.86663404e-01 1.36065597e-01]
+  [9.84044463e-02 5.46048014e-01 4.86234879e-01 7.43271130e-01
+   8.02842449e-01 3.51082326e-01 4.23959164e-01 7.59614704e-01
+   5.83151952e-03 7.99024593e-02]]
 
- [[1.         0.         0.         0.         0.         1.
-   0.         0.         1.         0.        ]
-  [0.         0.         0.         0.         0.         1.
-   0.         1.         0.         0.        ]
-  [0.         0.         0.         0.         0.         1.
-   0.         0.         1.         1.        ]
-  [0.         0.         0.         0.         1.         1.
-   0.         1.         0.         1.        ]
-  [0.         1.         0.         1.         0.         0.
-   0.         0.         0.         0.        ]
-  [0.         0.         0.         0.         0.         1.
-   0.         1.         0.         0.        ]
-  [0.         0.         0.         0.         0.         0.
-   0.         0.         0.         0.        ]
-  [0.         0.         0.         0.         1.         0.
-   0.         0.         0.         0.        ]
-  [1.         0.         0.         0.         0.         0.
-   1.         0.         0.         0.        ]
-  [0.         0.         0.         0.         0.         1.
-   1.         0.         0.         0.        ]]]</code></pre>
+ [[1.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+   0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+   0.00000000e+00 0.00000000e+00]
+  [0.00000000e+00 1.00000000e+00 0.00000000e+00 0.00000000e+00
+   0.00000000e+00 0.00000000e+00 1.00000000e+00 0.00000000e+00
+   0.00000000e+00 0.00000000e+00]
+  [0.00000000e+00 1.00000000e+00 1.00000000e+00 0.00000000e+00
+   0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+   1.00000000e+00 0.00000000e+00]
+  [0.00000000e+00 0.00000000e+00 0.00000000e+00 1.00000000e+00
+   0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+   1.00000000e+00 1.00000000e+00]
+  [0.00000000e+00 1.00000000e+00 0.00000000e+00 0.00000000e+00
+   1.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+   0.00000000e+00 0.00000000e+00]
+  [1.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+   0.00000000e+00 0.00000000e+00 0.00000000e+00 1.00000000e+00
+   0.00000000e+00 0.00000000e+00]
+  [0.00000000e+00 0.00000000e+00 1.00000000e+00 0.00000000e+00
+   0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+   0.00000000e+00 0.00000000e+00]
+  [0.00000000e+00 1.00000000e+00 0.00000000e+00 0.00000000e+00
+   0.00000000e+00 0.00000000e+00 0.00000000e+00 1.00000000e+00
+   0.00000000e+00 0.00000000e+00]
+  [0.00000000e+00 0.00000000e+00 0.00000000e+00 1.00000000e+00
+   1.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+   1.00000000e+00 0.00000000e+00]
+  [1.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+   0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+   0.00000000e+00 0.00000000e+00]]]</code></pre>
 </div>
 </div>
 

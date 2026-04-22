@@ -80,15 +80,15 @@ ggplot(group1_data, aes(x = Mean)) +
        y = "Count")
 #Histogram 2
 ggplot(group2_data, aes(x = Mean)) +
-  geom_histogram(bins = 20, fill = "blue", color = "black") +
-  geom_vline(xintercept = group_means[2], color = "pink", linetype = "solid", size = 1) +
+  geom_histogram(bins = 20, fill = "pink", color = "black") +
+  geom_vline(xintercept = group_means[2], color = "green", linetype = "solid", size = 1) +
   labs(title = "Group 2 - Randomization Distribution",
        x = "Mean Value",
        y = "Count")
 
 #Histogram 3
 ggplot(group3_data, aes(x = Mean)) +
-  geom_histogram(bins = 20, fill = "blue", color = "black") +
+  geom_histogram(bins = 20, fill = "orange", color = "black") +
   geom_vline(xintercept = group_means[3], color = "pink", linetype = "solid", size = 1) +
   labs(title = "Group 3 - Randomization Distribution",
        x = "Mean Value",
