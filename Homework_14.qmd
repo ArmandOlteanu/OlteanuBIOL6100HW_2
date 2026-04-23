@@ -1,0 +1,18 @@
+---
+title: "Homework_14"
+format: html
+---
+
+```{r}
+
+
+
+
+
+
+
+
+
+
+
+```
