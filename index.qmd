@@ -28,3 +28,6 @@ To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
 [Homework 12](https://github.com/ArmandOlteanu/CA_SIR_6100.git)
 
 [Homework 13](Homework_13.html) 
+
+[Homework 14](Homework_14.html)
+
