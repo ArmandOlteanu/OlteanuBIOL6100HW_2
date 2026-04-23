@@ -8,7 +8,6 @@ To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
 
 [Homework 1](Homework_02.html)
 
-
 [Homework 3](Homework_4.html)
 
 [Homework 4](Homework_5.html)
