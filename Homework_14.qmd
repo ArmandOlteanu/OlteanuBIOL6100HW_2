@@ -2,3 +2,58 @@
 title: "Homework_14"
 format: html
 ---
+```{r}
+
+library(tidyverse)
+library(lubridate)
+library(lme4)
+library(car)
+library(gapminder)
+data("gapminder")
+glimpse(gapminder)
+
+#data prep
+
+gapminder_prep <- gapminder %>%
+    mutate(
+        year_centered = year - 1952,
+        continent = factor(continent)
+    )
+# centered year for intuitive understanding
+
+glimpse(gapminder_prep)
+######## Question 1: Does the rate of life expectancy increase over time differ between continents.
+
+f1 <- ggplot(gapminder_prep, aes(x = year, y = lifeExp, color = continent)) +
+    geom_smooth(method = "lm", se = TRUE, linewidth = 1.5) +
+    geom_line(aes(group = country), alpha = 0.1) +
+    labs(
+        title = "Life Expactancy Over Time by Continent",
+        x = "Year",
+        y = "Life Expectancy",
+        color = "Continent"
+    ) +
+        theme_minimal()
+print(f1)
+
+
+#Running the model
+
+model_1 <- lmer(
+    lifeExp ~ year_centered * continent + (1| country),
+    data = gapminder_prep
+)
+
+summary(model_1)
+anova <- Anova(model_1, type = 2)
+print(anova)
+
+
+
+```
+
+For this question, I used the gapminder dataset to test whether life expectancy changed over time differently among continents. I used a linear mixed model with country as a random effect to account for repeated measurements of the same countries over time. I included an interaction between year and continent to test whether the slope of change differed across continents. The model results show that life expectancy generally increased over time, p < 0.001 but the significant interaction p < 0.001 confirms that the amount of change was not the same for every continent. This supports my hypothesis that trends in life expectancy vary across continents rather than following one single global pattern.
+
+
+
+ 
