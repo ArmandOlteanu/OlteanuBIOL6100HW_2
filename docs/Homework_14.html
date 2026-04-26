@@ -225,7 +225,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>gapminder_prep <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">year_centered =</span> year <span class="sc">-</span> <span class="dv">1952</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">year_since_1952 =</span> year <span class="sc">-</span> <span class="dv">1952</span>,</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">continent =</span> <span class="fu">factor</span>(continent)</span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># centered year for intuitive understanding</span></span>
@@ -234,13 +234,13 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 1,704
 Columns: 7
-$ country       &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanista…
-$ continent     &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, As…
-$ year          &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 19…
-$ lifeExp       &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, …
-$ pop           &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372…
-$ gdpPercap     &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11…
-$ year_centered &lt;dbl&gt; 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 0, 5, 10, …</code></pre>
+$ country         &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanis…
+$ continent       &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …
+$ year            &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, …
+$ lifeExp         &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854…
+$ pop             &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 148803…
+$ gdpPercap       &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.…
+$ year_since_1952 &lt;dbl&gt; 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 0, 5, 10…</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">######## Question 1: Does the rate of life expectancy increase over time differ between continents.</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -268,14 +268,14 @@ $ year_centered &lt;dbl&gt; 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 0, 5, 
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Running the model</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>model_1 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    lifeExp <span class="sc">~</span> year_centered <span class="sc">*</span> continent <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span> country),</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    lifeExp <span class="sc">~</span> year_since_1952 <span class="sc">*</span> continent <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span> country),</span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> gapminder_prep</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Linear mixed model fit by REML ['lmerMod']
-Formula: lifeExp ~ year_centered * continent + (1 | country)
+Formula: lifeExp ~ year_since_1952 * continent + (1 | country)
    Data: gapminder_prep
 
 REML criterion at convergence: 9420.5
@@ -291,39 +291,39 @@ Random effects:
 Number of obs: 1704, groups:  country, 142
 
 Fixed effects:
-                                 Estimate Std. Error t value
-(Intercept)                     40.903275   0.933620  43.811
-year_centered                    0.289529   0.007547  38.362
-continentAmericas               13.645061   1.638496   8.328
-continentAsia                    6.700762   1.498382   4.472
-continentEurope                 24.897277   1.543535  16.130
-continentOceania                27.640443   4.851231   5.698
-year_centered:continentAmericas  0.078122   0.013245   5.898
-year_centered:continentAsia      0.163593   0.012113  13.506
-year_centered:continentEurope   -0.067597   0.012478  -5.417
-year_centered:continentOceania  -0.079257   0.039217  -2.021
+                                   Estimate Std. Error t value
+(Intercept)                       40.903275   0.933620  43.811
+year_since_1952                    0.289529   0.007547  38.362
+continentAmericas                 13.645061   1.638496   8.328
+continentAsia                      6.700762   1.498382   4.472
+continentEurope                   24.897277   1.543535  16.130
+continentOceania                  27.640443   4.851231   5.698
+year_since_1952:continentAmericas  0.078122   0.013245   5.898
+year_since_1952:continentAsia      0.163593   0.012113  13.506
+year_since_1952:continentEurope   -0.067597   0.012478  -5.417
+year_since_1952:continentOceania  -0.079257   0.039217  -2.021
 
 Correlation of Fixed Effects:
-                  (Intr) yr_cnt cntnntAm cntnntAs cntnnE cntnnO
-year_centrd       -0.222                                       
-cntnntAmrcs       -0.570  0.127                                
-continentAs       -0.623  0.139  0.355                         
-continntErp       -0.605  0.134  0.345    0.377                
-continntOcn       -0.192  0.043  0.110    0.120    0.116       
-yr_cntrd:cntnntAm  0.127 -0.570 -0.222   -0.079   -0.077 -0.024
-yr_cntrd:cntnntAs  0.139 -0.623 -0.079   -0.222   -0.084 -0.027
-yr_cntrd:cE        0.134 -0.605 -0.077   -0.084   -0.222 -0.026
-yr_cntrd:cO        0.043 -0.192 -0.024   -0.027   -0.026 -0.222
-                  yr_cntrd:cntnntAm yr_cntrd:cntnntAs yr_c:E
-year_centrd                                                 
-cntnntAmrcs                                                 
-continentAs                                                 
-continntErp                                                 
-continntOcn                                                 
-yr_cntrd:cntnntAm                                           
-yr_cntrd:cntnntAs  0.355                                    
-yr_cntrd:cE        0.345             0.377                  
-yr_cntrd:cO        0.110             0.120             0.116</code></pre>
+                     (Intr) yr__1952 cntnntAm cntnntAs cntnnE cntnnO
+yr_snc_1952          -0.222                                         
+cntnntAmrcs          -0.570  0.127                                  
+continentAs          -0.623  0.139    0.355                         
+continntErp          -0.605  0.134    0.345    0.377                
+continntOcn          -0.192  0.043    0.110    0.120    0.116       
+yr_snc_1952:cntnntAm  0.127 -0.570   -0.222   -0.079   -0.077 -0.024
+yr_snc_1952:cntnntAs  0.139 -0.623   -0.079   -0.222   -0.084 -0.027
+yr_s_1952:E           0.134 -0.605   -0.077   -0.084   -0.222 -0.026
+yr_s_1952:O           0.043 -0.192   -0.024   -0.027   -0.026 -0.222
+                     yr_snc_1952:cntnntAm yr_snc_1952:cntnntAs y__1952:E
+yr_snc_1952                                                             
+cntnntAmrcs                                                             
+continentAs                                                             
+continntErp                                                             
+continntOcn                                                             
+yr_snc_1952:cntnntAm                                                    
+yr_snc_1952:cntnntAs  0.355                                             
+yr_s_1952:E           0.345                0.377                        
+yr_s_1952:O           0.110                0.120                0.116   </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>anova <span class="ot">&lt;-</span> <span class="fu">Anova</span>(model_1, <span class="at">type =</span> <span class="dv">2</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(anova)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -331,15 +331,136 @@ yr_cntrd:cO        0.110             0.120             0.116</code></pre>
 <pre><code>Analysis of Deviance Table (Type II Wald chisquare tests)
 
 Response: lifeExp
-                          Chisq Df Pr(&gt;Chisq)    
-year_centered           5091.95  1  &lt; 2.2e-16 ***
-continent                269.51  4  &lt; 2.2e-16 ***
-year_centered:continent  336.77  4  &lt; 2.2e-16 ***
+                            Chisq Df Pr(&gt;Chisq)    
+year_since_1952           5091.95  1  &lt; 2.2e-16 ***
+continent                  269.51  4  &lt; 2.2e-16 ***
+year_since_1952:continent  336.77  4  &lt; 2.2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<p>For this question, I used the gapminder dataset to test whether life expectancy changed over time differently among continents. I used a linear mixed model with country as a random effect to account for repeated measurements of the same countries over time. I included an interaction between year and continent to test whether the slope of change differed across continents. The model results show that life expectancy generally increased over time, p &lt; 0.001 but the significant interaction p &lt; 0.001 confirms that the amount of change was not the same for every continent. This supports my hypothesis that trends in life expectancy vary across continents rather than following one single global pattern.</p>
+<p>For this question, I used the gapminder dataset to test whether life expectancy changed over time differently among continents. I used a linear mixed model with country as a random effect to account for repeated measurements of the same countries over time. I included an interaction between year and continent to test whether the slope of change differed across continents. The model results show that life expectancy generally increased over time, p &lt; 0.001 but the significant interaction p &lt; 0.001 confirms that the amount of change was not the same for every continent. This supports my hypothesis in that trends in life expectancy vary across continents rather than following one single global pattern.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Does gdppercapita increase over time differently across continents?</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>gdp_trend <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(gapminder_prep, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> gdpPercap, <span class="at">color =</span> continent)) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> country), <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"GDP per Capita over time by continent"</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"GDP per Capita $"</span>,</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> <span class="st">"Continent"</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme_minimal</span>()</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(gdp_trend)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Homework_14_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Model</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>model_2 <span class="ot">&lt;-</span> <span class="fu">glmer</span>(</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    gdpPercap <span class="sc">~</span> year_since_1952 <span class="sc">*</span> continent <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> country),</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> gapminder_prep,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> <span class="fu">Gamma</span>(<span class="at">link =</span> <span class="st">"log"</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl = control$checkConv, : Model failed to converge with max|grad| = 0.0084866 (tol = 0.002, component 1)
+  See ?lme4::convergence and ?lme4::troubleshooting.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl = control$checkConv, : Model is nearly unidentifiable: very large eigenvalue
+ - Rescale variables?;Model is nearly unidentifiable: large eigenvalue ratio
+ - Rescale variables?</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Generalized linear mixed model fit by maximum likelihood (Laplace
+  Approximation) [glmerMod]
+ Family: Gamma  ( log )
+Formula: gdpPercap ~ year_since_1952 * continent + (1 | country)
+   Data: gapminder_prep
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+  28981.7   29047.0  -14478.8   28957.7      1692 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-2.2007 -0.4729 -0.0240  0.4139 10.2413 
+
+Random effects:
+ Groups   Name        Variance Std.Dev.
+ country  (Intercept) 0.1786   0.4226  
+ Residual             0.1231   0.3509  
+Number of obs: 1704, groups:  country, 142
+
+Fixed effects:
+                                  Estimate Std. Error t value Pr(&gt;|z|)    
+(Intercept)                       7.049594   0.137563  51.246  &lt; 2e-16 ***
+year_since_1952                   0.008591   0.000708  12.135  &lt; 2e-16 ***
+continentAmericas                 1.184222   0.241397   4.906 9.31e-07 ***
+continentAsia                     0.385695   0.220642   1.748  0.08045 .  
+continentEurope                   1.624764   0.227457   7.143 9.12e-13 ***
+continentOceania                  2.231651   0.714392   3.124  0.00179 ** 
+year_since_1952:continentAmericas 0.005842   0.001226   4.767 1.87e-06 ***
+year_since_1952:continentAsia     0.016174   0.001136  14.238  &lt; 2e-16 ***
+year_since_1952:continentEurope   0.016254   0.001169  13.908  &lt; 2e-16 ***
+year_since_1952:continentOceania  0.009588   0.003533   2.714  0.00665 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Correlation of Fixed Effects:
+                     (Intr) yr__1952 cntnntAm cntnntAs cntnnE cntnnO
+yr_snc_1952          -0.142                                         
+cntnntAmrcs          -0.570  0.081                                  
+continentAs          -0.623  0.088    0.355                         
+continntErp          -0.605  0.086    0.345    0.377                
+continntOcn          -0.193  0.027    0.110    0.120    0.116       
+yr_snc_1952:cntnntAm  0.082 -0.578   -0.140   -0.051   -0.049 -0.016
+yr_snc_1952:cntnntAs  0.088 -0.623   -0.050   -0.141   -0.053 -0.017
+yr_s_1952:E           0.086 -0.606   -0.049   -0.053   -0.141 -0.016
+yr_s_1952:O           0.028 -0.200   -0.016   -0.018   -0.017 -0.136
+                     yr_snc_1952:cntnntAm yr_snc_1952:cntnntAs y__1952:E
+yr_snc_1952                                                             
+cntnntAmrcs                                                             
+continentAs                                                             
+continntErp                                                             
+continntOcn                                                             
+yr_snc_1952:cntnntAm                                                    
+yr_snc_1952:cntnntAs  0.360                                             
+yr_s_1952:E           0.350                0.378                        
+yr_s_1952:O           0.116                0.125                0.121   
+optimizer (Nelder_Mead) convergence code: 0 (OK)
+Model failed to converge with max|grad| = 0.0084866 (tol = 0.002, component 1)
+  See ?lme4::convergence and ?lme4::troubleshooting.
+Model is nearly unidentifiable: very large eigenvalue
+ - Rescale variables?
+Model is nearly unidentifiable: large eigenvalue ratio
+ - Rescale variables?</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>anova_2 <span class="ot">&lt;-</span> <span class="fu">Anova</span>(model_2, <span class="at">type =</span> <span class="dv">2</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(anova_2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Deviance Table (Type II Wald chisquare tests)
+
+Response: gdpPercap
+                             Chisq Df Pr(&gt;Chisq)    
+year_since_1952           1578.656  1  &lt; 2.2e-16 ***
+continent                   96.952  4  &lt; 2.2e-16 ***
+year_since_1952:continent  295.348  4  &lt; 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>Hypothesis: Does gdppercapita increase over time differently across continents? For this question I also used the gapminder set to test my hypothesis. I used a gamma GLMM with a log link because of GDP per cap being a positive continuous variable. I used country as a random effect to account for repeated measurements of teh same countries. I included an interaction between year and continent to test if the slope change differed across countries. The model results shows that GDP per capita increased over time, p &lt;0.001 and the significant interaction confirms that the amount of change was not the same for every continent. This supports my hypothesis in that change in gdp per capita varies across continents because of varying economic growth rather than following a globel pattern.</p>
 
 
 

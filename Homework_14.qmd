@@ -5,7 +5,6 @@ format: html
 ```{r}
 
 library(tidyverse)
-library(lubridate)
 library(lme4)
 library(car)
 library(gapminder)
@@ -16,7 +15,7 @@ glimpse(gapminder)
 
 gapminder_prep <- gapminder %>%
     mutate(
-        year_centered = year - 1952,
+        year_since_1952 = year - 1952,
         continent = factor(continent)
     )
 # centered year for intuitive understanding
@@ -40,7 +39,7 @@ print(f1)
 #Running the model
 
 model_1 <- lmer(
-    lifeExp ~ year_centered * continent + (1| country),
+    lifeExp ~ year_since_1952 * continent + (1| country),
     data = gapminder_prep
 )
 
@@ -52,8 +51,43 @@ print(anova)
 
 ```
 
-For this question, I used the gapminder dataset to test whether life expectancy changed over time differently among continents. I used a linear mixed model with country as a random effect to account for repeated measurements of the same countries over time. I included an interaction between year and continent to test whether the slope of change differed across continents. The model results show that life expectancy generally increased over time, p < 0.001 but the significant interaction p < 0.001 confirms that the amount of change was not the same for every continent. This supports my hypothesis that trends in life expectancy vary across continents rather than following one single global pattern.
+For this question, I used the gapminder dataset to test whether life expectancy changed over time differently among continents. I used a linear mixed model with country as a random effect to account for repeated measurements of the same countries over time. I included an interaction between year and continent to test whether the slope of change differed across continents. The model results show that life expectancy generally increased over time, p < 0.001 but the significant interaction p < 0.001 confirms that the amount of change was not the same for every continent. This supports my hypothesis in that trends in life expectancy vary across continents rather than following one single global pattern.
 
 
+```{r}
 
+# Does gdppercapita increase over time differently across continents?
+
+gdp_trend <- ggplot(gapminder_prep, aes(x = year, y = gdpPercap, color = continent)) +
+    geom_line(aes(group = country), alpha = 0.1) +
+    geom_smooth(method = "lm", se = TRUE) +
+    labs(
+        title = "GDP per Capita over time by continent",
+        x = "Year",
+        y = "GDP per Capita $",
+        color = "Continent"
+    ) +
+        theme_minimal()
+
+print(gdp_trend)
+
+#Model
+
+model_2 <- glmer(
+    gdpPercap ~ year_since_1952 * continent + (1 | country),
+    data = gapminder_prep,
+    family = Gamma(link = "log")
+)
+summary(model_2)
+anova_2 <- Anova(model_2, type = 2)
+print(anova_2)
  
+
+
+
+
+
+
+```
+
+Hypothesis: Does gdppercapita increase over time differently across continents?  For this question I also used the gapminder set to test my hypothesis. I used a gamma GLMM with a log link because of GDP per cap being a positive continuous variable.  I used country as a random effect to account for repeated measurements of teh same countries. I included an interaction between year and continent to test if the slope change differed across countries. The model results shows that GDP per capita increased over time, p <0.001 and the significant interaction confirms that the amount of change was not the same for every continent. This supports my hypothesis in that change in gdp per capita varies across continents because of varying economic growth rather than following a globel pattern. 
